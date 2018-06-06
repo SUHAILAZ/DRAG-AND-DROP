@@ -1,0 +1,145 @@
+<html>
+
+<head>
+  <title>Game</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<style>
+.bgimg{
+  background-image:url('Game Images/background.jpg');
+  background-repeat:no-repeat;
+  background-size: cover;
+}
+.bio
+{
+height:300px;
+width:100px;
+float:left;
+}
+.non
+{
+height:300px;
+width:100px;
+float:left;
+}
+
+.gr{
+  vertical-align: bottom;
+
+}
+.ye{}
+
+  </style>
+  <script>
+  var z=11;
+  var m=0;
+ var x=y=0;
+ var att=0,cr=0;
+
+$( function() {
+
+
+  $( ".bio" ).draggable({ revert: function(){
+
+  att=att+1;
+  return true;
+
+  }  });
+  $(".non").draggable({
+    revert: function(){
+      att=att+1;
+      return true;
+    }
+
+  });
+
+  $( ".gr" ).droppable({
+
+    drop: function( event, ui ) {
+
+      if(ui.draggable.hasClass("bio"))
+          {
+
+          ui.draggable.remove();
+          x=x+1;
+          att=att+1;
+          m=m+1;
+              }
+
+
+          if(m==z)
+          {
+          alert("you won");
+          cr=x+y;
+          alert("Total attempts" +att);
+          alert("Correct attempts" +cr);
+        }
+            }
+  });
+  $( ".ye" ).droppable({
+
+    accept:'.non',
+    drop: function( event, ui ) {
+
+      if(ui.draggable.hasClass("non"))
+          {
+
+           y=y+1;
+           m=m+1;
+           att=att+1;
+          ui.draggable.remove();
+
+              }
+              if(m==z){
+              alert("You won");
+              cr=x+y;
+              alert("Total attempts" +att);
+              alert("Correct attempts" +cr);
+            }
+
+
+        }
+  });
+
+
+
+
+} );
+
+
+i = 60;
+function onTimer() {
+  document.getElementById('mycounter').innerHTML = i;
+  i--;
+  if (i < 0) {
+    alert('You lose!');
+  }
+  else {
+    setTimeout(onTimer, 1000);
+  }
+}
+</script>
+
+
+</script>
+</head>
+<body class="bgimg">
+  <button onclick="onTimer()" >START GAME</button>
+  <div id="mycounter"></div>
+<img src="Game Images/organic/bread.png" class="bio" >
+<img src="Game Images/organic/banana.png" class="bio" >
+<img src="Game Images/organic/biscuit.png" class="bio" >
+<img src="Game Images/organic/vegetables.png" class="bio" >
+<img src="Game Images/organic/rice.png" class="bio" >
+<img src="Game Images/organic/fish.png" class="bio" >
+<img src="Game Images/organic/egg.png" class="bio">
+<img src="Game Images/organic/cocunut.png" class="bio">
+<img src="Game Images/organic/bones.png" class="bio" >
+<img src="Game Images/inorganic/aluminium.png" class="non" >
+<img src="Game Images/inorganic/glass.png" class="non" >
+<img src="Game Images/inorganic-waste-bin.png" height=150px width=50px align="bottom" class="ye" />
+<img src="Game Images/organic-waste-bin.png" height=150px width=50px align="bottom" class="gr" />
+
+
+</body>
+</html>
